@@ -1,0 +1,37 @@
+﻿
+-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[PRC_DELETE_REPARTO]
+@IDREPARTO    INT,
+@RISULTATO			CHAR(2)			= '' OUTPUT,
+@DESRISULTATO		VARCHAR(1000)	= '' OUTPUT
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+BEGIN TRY
+	
+	BEGIN TRANSACTION 		
+	
+	UPDATE REPARTO SET STATUS = 'C' WHERE IDREPARTO = @IDREPARTO	  
+	SET @RISULTATO = 'OK'
+	SET @DESRISULTATO = 'CANCELLAZIONE ESEGUITA CORRETTAMENTE'
+
+END TRY
+BEGIN CATCH
+    SET @RISULTATO = 'KO'
+    SET @DESRISULTATO = ERROR_MESSAGE()
+END CATCH	
+
+	FINE:
+
+	IF SUBSTRING(@RISULTATO, 1 , 2) = 'OK' 
+		COMMIT TRANSACTION
+	ELSE
+		ROLLBACK TRANSACTION
+		
+END

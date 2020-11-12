@@ -1,0 +1,20 @@
+﻿-- =============================================
+-- Author:		<Author,,Name>
+-- Create date: <Create Date,,>
+-- Description:	<Description,,>
+-- =============================================
+CREATE PROCEDURE [dbo].[PRC_GET_CODICEPAGAMENTObyCODICEPAGAMENTO] 
+	@CODICE_PAGAMENTO VARCHAR(02)= '00',
+	@DES_PAGAMENTO   VARCHAR(50)= ' ' ,
+	@FP_TYPE INT = -1 ,
+	@FP_INDEX INT = -1 , 
+	@FP_DESCR INT = -1 
+	
+AS
+BEGIN
+	SET NOCOUNT ON 
+    SELECT  CODICE_PAGAMENTO, DES_PAGAMENTO, FP_TYPE, FP_INDEX, FP_DESCR 
+    FROM  TIPO_PAGAMENTO 
+	WHERE
+	CODICE_PAGAMENTO = CASE WHEN @CODICE_PAGAMENTO = '00' THEN TIPO_PAGAMENTO.CODICE_PAGAMENTO ELSE @CODICE_PAGAMENTO END 
+END

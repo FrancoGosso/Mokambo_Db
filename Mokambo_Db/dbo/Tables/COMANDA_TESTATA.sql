@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[COMANDA_TESTATA] (
+    [ID_COMANDA]           INT          IDENTITY (1, 1) NOT NULL,
+    [ID_BASKET]            INT          NOT NULL,
+    [ID_REPARTO]           INT          NOT NULL,
+    [DESCRIZIONE]          VARCHAR (50) NOT NULL,
+    [STAMPANTE]            VARCHAR (50) NOT NULL,
+    [DATA_CREAZIONE]       DATETIME     NOT NULL,
+    [EVASA]                BIT          NOT NULL,
+    [TAVOLO]               INT          NOT NULL,
+    [DATA_INIZIO_EVASIONE] DATETIME     NULL,
+    [DATA_FINE_EVASIONE]   DATETIME     NULL,
+    [CODICE_UTENTE]        VARCHAR (30) NULL,
+    CONSTRAINT [PK_COMANDA_TESTATA] PRIMARY KEY CLUSTERED ([ID_COMANDA] ASC)
+);
+

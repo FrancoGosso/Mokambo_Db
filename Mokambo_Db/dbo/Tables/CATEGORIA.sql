@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[CATEGORIA] (
+    [ID_CATEGORIA]          INT           IDENTITY (10, 10) NOT NULL,
+    [DESCRIZIONE_CATEGORIA] VARCHAR (250) NOT NULL,
+    [IMMAGINE]              VARCHAR (250) NOT NULL,
+    [STATUS]                VARCHAR (10)  NOT NULL,
+    [ORDINE]                INT           NOT NULL,
+    [VISUALIZZA]            BIT           NOT NULL,
+    CONSTRAINT [PK_CAT] PRIMARY KEY CLUSTERED ([ID_CATEGORIA] ASC)
+);
+

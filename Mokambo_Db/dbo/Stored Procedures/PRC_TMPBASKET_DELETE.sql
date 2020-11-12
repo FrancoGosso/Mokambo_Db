@@ -1,0 +1,28 @@
+﻿
+-- =============================================
+-- Author:		DELPIANO STEFANO
+-- Create date: 18-06-2020
+-- Description: UPDATE DI UN BARCODE NEL BASKET TEMPORANEO
+--				PER QTA = 0 VIENE CANCELLATO EAN DAL BASKET
+-- =============================================
+CREATE PROCEDURE [dbo].[PRC_TMPBASKET_DELETE]
+@NEGOZIO			VARCHAR(10),
+@BASKET				VARCHAR(250),
+@BARCODE			VARCHAR(13) = ''
+AS
+BEGIN
+
+	 
+
+
+	SET NOCOUNT ON;
+	
+
+		DELETE BASKET_TEMPORANEO WHERE
+				CODICE_NEGOZIO = @NEGOZIO AND
+				CODICE_BASKET = @BASKET AND
+				EAN = CASE @BARCODE WHEN '' THEN EAN ELSE @BARCODE END
+	
+	
+
+END

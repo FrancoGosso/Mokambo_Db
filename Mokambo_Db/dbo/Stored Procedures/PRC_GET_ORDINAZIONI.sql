@@ -1,0 +1,10 @@
+﻿
+create PROCEDURE [dbo].[PRC_GET_ORDINAZIONI]
+@UTENTE varchar(30)
+AS
+SET NOCOUNT ON
+
+select DESC_ORDINAZIONE, DATA_CREAZIONE
+ from [dbo].[BASKET_TESTATA]
+ where CODICE_UTENTE = @UTENTE --'admin'
+ order by DATA_CREAZIONE

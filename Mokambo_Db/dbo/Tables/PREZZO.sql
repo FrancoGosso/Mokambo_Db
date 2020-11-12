@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[PREZZO] (
+    [CODICE_NEGOZIO]           VARCHAR (10) NOT NULL,
+    [EAN]                      VARCHAR (13) NOT NULL,
+    [ID_ARTICOLO]              INT          NOT NULL,
+    [CODICE_ARTICOLO_COMPLETO] VARCHAR (50) NOT NULL,
+    [PREZZO]                   MONEY        CONSTRAINT [DF_BARCODE_PREZZO] DEFAULT ((0)) NOT NULL,
+    [FOTO]                     VARCHAR (50) NULL,
+    CONSTRAINT [PK_PREZZO] PRIMARY KEY CLUSTERED ([CODICE_NEGOZIO] ASC, [EAN] ASC)
+);
+

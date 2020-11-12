@@ -1,0 +1,12 @@
+﻿CREATE TABLE [dbo].[BASKET_RIGA] (
+    [ID_BASKET]   INT           NOT NULL,
+    [ID_MENU]     INT           NOT NULL,
+    [ID_ARTICOLO] INT           NOT NULL,
+    [PREZZO]      MONEY         NOT NULL,
+    [QTA]         INT           NOT NULL,
+    [ISTRUZIONI]  VARCHAR (250) NULL,
+    [BOX]         INT           NULL,
+    [QTA_INVIATA] INT           CONSTRAINT [DF_BASKET_RIGA_QTA_INVIATA] DEFAULT ((0)) NOT NULL,
+    CONSTRAINT [PK_BASKET_RIGA] PRIMARY KEY CLUSTERED ([ID_BASKET] ASC, [ID_MENU] ASC, [ID_ARTICOLO] ASC)
+);
+

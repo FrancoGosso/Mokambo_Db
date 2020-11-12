@@ -1,0 +1,314 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>Mokambo_Db</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{66c1e052-d3ab-4ce0-9458-60f994aba2ce}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>Mokambo_Db</RootNamespace>
+    <AssemblyName>Mokambo_Db</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Views\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\USER_NEGOZIO.sql" />
+    <Build Include="dbo\Tables\UNITA_MISURA.sql" />
+    <Build Include="dbo\Tables\TIPO_PAGAMENTO_old.sql" />
+    <Build Include="dbo\Tables\TIPO_PAGAMENTO.sql" />
+    <Build Include="dbo\Tables\TALLONCINO_BILANCIA.sql" />
+    <Build Include="dbo\Tables\STATUS.sql" />
+    <Build Include="dbo\Tables\SOTTOCANALE.sql" />
+    <Build Include="dbo\Tables\SCONTRINATO_TESTATA_old.sql" />
+    <Build Include="dbo\Tables\SCONTRINATO_TESTATA.sql" />
+    <Build Include="dbo\Tables\SCONTRINATO_RIGA_old.sql" />
+    <Build Include="dbo\Tables\SCONTRINATO_PAGAMENTO.sql" />
+    <Build Include="dbo\Tables\SCONTRINATO_DA_INVIARE.sql" />
+    <Build Include="dbo\Tables\REPARTO_VENDITA.sql" />
+    <Build Include="dbo\Tables\REPARTO_UTENTI.sql" />
+    <Build Include="dbo\Tables\REPARTO_old.sql" />
+    <Build Include="dbo\Tables\REPARTO.sql" />
+    <Build Include="dbo\Tables\PROGRESSIVO.sql" />
+    <Build Include="dbo\Tables\PREZZO.sql" />
+    <Build Include="dbo\Tables\NEGOZIO.sql" />
+    <Build Include="dbo\Tables\MENU_ARTICOLO.sql" />
+    <Build Include="dbo\Tables\MENU.sql" />
+    <Build Include="dbo\Tables\LINGUA.sql" />
+    <Build Include="dbo\Tables\IVA.sql" />
+    <Build Include="dbo\Tables\INGREDIENTE.sql" />
+    <Build Include="dbo\Tables\IdentityUserRoles.sql" />
+    <Build Include="dbo\Tables\IdentityUserLogins.sql" />
+    <Build Include="dbo\Tables\IdentityUserClaims.sql" />
+    <Build Include="dbo\Tables\IdentityRoles.sql" />
+    <Build Include="dbo\Tables\GIACENZA.sql" />
+    <Build Include="dbo\Tables\CURRENCY.sql" />
+    <Build Include="dbo\Tables\COMANDA_TESTATA_old.sql" />
+    <Build Include="dbo\Tables\COMANDA_TESTATA.sql" />
+    <Build Include="dbo\Tables\COMANDA_RIGA.sql" />
+    <Build Include="dbo\Tables\CATEGORIA_old.sql" />
+    <Build Include="dbo\Tables\CATEGORIA_LINGUA_old.sql" />
+    <Build Include="dbo\Tables\CATEGORIA_LINGUA.sql" />
+    <Build Include="dbo\Tables\CATEGORIA.sql" />
+    <Build Include="dbo\Tables\CASSA.sql" />
+    <Build Include="dbo\Tables\CANALE_VENDITA.sql" />
+    <Build Include="dbo\Tables\BASKET_TESTATA_old.sql" />
+    <Build Include="dbo\Tables\BASKET_TESTATA.sql" />
+    <Build Include="dbo\Tables\BASKET_TEMPORANEO.sql" />
+    <Build Include="dbo\Tables\BASKET_RIGA.sql" />
+    <Build Include="dbo\Tables\BASKET_PAGAMENTO.sql" />
+    <Build Include="dbo\Tables\ARTICOLO_temp.sql" />
+    <Build Include="dbo\Tables\ARTICOLO_old.sql" />
+    <Build Include="dbo\Tables\ARTICOLO_LINGUA.sql" />
+    <Build Include="dbo\Tables\ARTICOLO_INGREDIENTE.sql" />
+    <Build Include="dbo\Tables\ARTICOLO_ALLERGENE.sql" />
+    <Build Include="dbo\Tables\ARTICOLO.sql" />
+    <Build Include="dbo\Tables\ApplicationUsers.sql" />
+    <Build Include="dbo\Tables\APP_SETUP.sql" />
+    <Build Include="dbo\Tables\ALLERGENE.sql" />
+    <Build Include="dbo\Tables\AGGIORNAMENTO_DA_INVIARE.sql" />
+    <Build Include="dbo\Tables\__MigrationHistory.sql" />
+    <Build Include="dbo\Views\VW_GIACENZA.sql" />
+    <Build Include="Security\usrstreet.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Stored Procedures\PRG_GET_SCONTRINO_DA_INVIARE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_UPDATE_BASKET_QTA_INVIATA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_UPDATE_BASKET_BOX.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_UPD_SCONTRINO_INVIATO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_TMPBASKET_GET.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_TMPBASKET_DELETE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_TMPBASKET_ADD.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_TALLONCINO_REGISTRA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_SET_INIZIO_COMANDA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_SET_COMANDA_EVASA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_SET_BASKET_TAVOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_SET_BASKET_PAGATO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_RIGA_SCONTO_RINCARO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_USER_NEGOZIO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_TIPO_PAGAMENTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_SOTTOCANALE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_REPARTO_UTENTI.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_REPARTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_MENU.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_INGREDIENTE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_DES_ARTICOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_CATEGORIA_old.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_CATEGORIA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_CANALE_DI_VENDITA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_ARTICOLO_old.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_ARTICOLO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_UPD_ALLERGENE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_MENU_ARTICOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_COMANDA_TESTATA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_COMANDA_RIGA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_CATEGORIA_old.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_CATEGORIA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_BASKET_TESTATA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_INSERT_BASKET_RIGA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_IMPORT_SCO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_IMPORT_BLK_ARTICOLI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GIACENZA_SOTTRAI_BASKET.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_VendutoByPar.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_USER_NEGOZIObyUSERID.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_TOP_VENDUTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_TIPO_PAGAMENTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_TIPO_INSTALLAZIONE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_TALLONCINO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_SOTTOCANALEbyIDSOTTOCANALE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_SIGLA_UM.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_SCONTRINO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ScontrinatoByPar.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_RigheScontrini_Dett.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_RigheScontrini.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_REPARTObyID_REPARTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_REPARTO_UTENTI.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_REPARTO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_PROGRESSIVO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_PRODOTTI.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_ORDINAZIONI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_NEGOZIO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_MOVIMENTI_MAGAZZINO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_MENU_ARTICOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_MENU.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_INGREDIENTI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ID_ARTICOLO_STATUS_NOME_BREVEbyID_CATEGORIA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_EAN_BY_ID_ARTICOLO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_COMANDE_DA_EVADERE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_COMANDA_TESTATA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_COMANDA_RIGA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_CODICEPAGAMENTObyCODICEPAGAMENTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_CATEGORIA_LINGUA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_CATEGORIA_CON_GIACENZA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_CATEGORIA.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_CANALEVENDITA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_CANALE_VENDITA_byCOD_CANALE_VENDITA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_BASKET_ORDINAZIONI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_BASKET_BOX.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_BASKET_APERTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_BARCODE_CATEGORIA_CON_GIACENZA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLObyTIPO_ARTICOLO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLObyID_ARTICOLO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLObyCODICE_ARTICOLO.sql">
+      <AnsiNulls>Off</AnsiNulls>
+      <QuotedIdentifier>Off</QuotedIdentifier>
+    </Build>
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLO_INGREDIENTI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLO_BY_EAN.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLO_ALLERGENI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ARTICOLI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_APP_SETUP_VALORE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_GET_ALLERGENI.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_EXPORT_GIACENZE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_USER_NEGOZIO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_TIPO_PAGAMENTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_SOTTOCANALE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_REPARTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_MENU_ARTICOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_MENU.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_INGREDIENTE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_CATEGORIA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_CANALE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_BASKET_RIGA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_BASKET.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_ARTICOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_COMANDA_UPD_STATUS.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_COMANDA_RICERCA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_COMANDA_CREA_old.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_COMANDA_CREA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_CHECK_DELETE_INGREDIENTE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_CHECK_DELETE_ARTICOLO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_CHECK_DELETE_ALLERGENE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_CANCELLA_COMANDA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_TO_SCONTRINATO_old.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_TO_SCONTRINATO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_SALVATAGGIO_TOTALE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_REGISTRA_SCONTRINO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_PAGATO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_INSERT_old.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_BASKET_INSERT.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_AUTENTICATE_USER_BY_EAN.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_ARTICOLO_RICERCA_PAGINABILE.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_AGGIORNAMENTO_DA_INVIARE_RICERCA.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_AGGIORNAMENTO_DA_INVIARE_INSERT.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_AGGIORNAMENTO_DA_INVIARE_DELETE.sql" />
+    <Build Include="dbo\Stored Procedures\GET_SOTTOCANALEbyIDSOTTOCANALE.sql" />
+    <Build Include="dbo\Stored Procedures\DELETE_USER_TIPO_PAGAMENTO.sql" />
+    <Build Include="dbo\Stored Procedures\PRC_DELETE_ALLERGENE.sql" />
+  </ItemGroup>
+</Project>

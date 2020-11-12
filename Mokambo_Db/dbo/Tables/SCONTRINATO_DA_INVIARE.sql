@@ -1,0 +1,10 @@
+﻿CREATE TABLE [dbo].[SCONTRINATO_DA_INVIARE] (
+    [PROG]           INT          IDENTITY (1, 1) NOT NULL,
+    [CODICE_NEGOZIO] VARCHAR (10) NOT NULL,
+    [DATA]           CHAR (8)     NOT NULL,
+    [ORA]            CHAR (6)     NOT NULL,
+    [CASSA]          INT          NOT NULL,
+    [SCONTRINO]      INT          NOT NULL,
+    CONSTRAINT [PK_SCONTRINO_DA_INVIARE] PRIMARY KEY CLUSTERED ([PROG] ASC)
+);
+

@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[ARTICOLO_temp] (
+    [ID_ARTICOLO]   INT           IDENTITY (1, 1) NOT NULL,
+    [NOME]          VARCHAR (250) NOT NULL,
+    [DESCRIZIONE]   NTEXT         NOT NULL,
+    [ID_CATEGORIA]  INT           NOT NULL,
+    [DEFAULT_IMAGE] VARCHAR (250) NOT NULL,
+    [PREZZO]        MONEY         NOT NULL,
+    [ID_REPARTO]    INT           NOT NULL,
+    [STATUS]        VARCHAR (10)  NOT NULL,
+    [DECONGELATO]   BIT           NULL,
+    CONSTRAINT [PK_ARTICOLO_temp] PRIMARY KEY CLUSTERED ([ID_ARTICOLO] ASC)
+);
+

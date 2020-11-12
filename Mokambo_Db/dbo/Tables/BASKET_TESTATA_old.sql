@@ -1,0 +1,15 @@
+﻿CREATE TABLE [dbo].[BASKET_TESTATA_old] (
+    [ID_BASKET]      INT          NOT NULL,
+    [DATA]           CHAR (8)     NOT NULL,
+    [ORA]            CHAR (6)     NOT NULL,
+    [CASSA]          INT          NOT NULL,
+    [SCONTRINO]      INT          NOT NULL,
+    [CODICE_NEGOZIO] VARCHAR (10) NULL,
+    [STAMPATO]       CHAR (1)     NOT NULL,
+    [PAGATO]         CHAR (1)     NOT NULL,
+    [TOTALE]         MONEY        NOT NULL,
+    [CODICE_UTENTE]  VARCHAR (30) CONSTRAINT [DF_BASKET_TESTATA_CODICE_UTENTE] DEFAULT ('') NOT NULL,
+    [RINCARO]        MONEY        DEFAULT ((0)) NULL,
+    CONSTRAINT [PK_BASKET_TESTATA_old] PRIMARY KEY CLUSTERED ([ID_BASKET] ASC)
+);
+

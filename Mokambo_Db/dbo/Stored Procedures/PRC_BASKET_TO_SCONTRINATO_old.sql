@@ -1,0 +1,175 @@
+﻿-- =============================================
+-- Author:		DELPIANO
+-- Create date: 03-03-2014
+-- Description:	COPIA DI UN BASKET SULLO SCONTRINATO
+-- =============================================
+create PROCEDURE [dbo].[PRC_BASKET_TO_SCONTRINATO_old]
+@ID_BASKET			INT,
+@RISULTATO			CHAR(2)			= '' OUTPUT,
+@DESRISULTATO		VARCHAR(1000)	= '' OUTPUT
+AS
+BEGIN
+
+	SET NOCOUNT ON;
+
+	DECLARE @CODICE_NEGOZIO VARCHAR(10)
+	DECLARE @DATA			VARCHAR(8)
+	DECLARE @ORA			VARCHAR(6)
+	DECLARE @CASSA			INT
+	DECLARE @SCONTRINO		INT
+
+	DECLARE @ID_PROVENIENZA	VARCHAR(3)
+
+
+	SELECT	@CODICE_NEGOZIO =	CODICE_NEGOZIO ,
+			@DATA			=	DATA,
+			@ORA			=	ORA,
+			@CASSA			=   CASSA,
+			@SCONTRINO		=	SCONTRINO
+			FROM BASKET_TESTATA WHERE ID_BASKET = @ID_BASKET
+			
+	SELECT @ID_PROVENIENZA =  VALORE FROM APP_SETUP WHERE CHIAVE = 'VERSIONE'
+
+BEGIN TRY
+	
+	BEGIN TRANSACTION 		
+
+
+	DELETE FROM SCONTRINATO_TESTATA  WHERE CODICE_NEGOZIO = @CODICE_NEGOZIO AND DATA = @DATA AND ORA = @ORA AND CASSA = @CASSA AND (SCONTRINO = @SCONTRINO or SCONTRINO = 0)-- aggiunta la cancellazione dello scontrino con valore zero a seguito di una stampa successiva al momento di vendita
+	INSERT INTO [SCONTRINATO_TESTATA]
+			   ([CODICE_NEGOZIO]
+			   ,[CODICE_UTENTE]
+			   ,[DATA]
+			   ,[ORA]
+			   ,[CASSA]
+			   ,[SCONTRINO]
+			   ,[ID_PROVENIENZA]
+			   ,[ID_BASKET]
+			   ,[STAMPATO]
+			   ,[PAGATO]
+			   ,[TOTALE]
+			   ,[RINCARO])
+	           
+		 SELECT
+			   CODICE_NEGOZIO 
+			   ,CODICE_UTENTE
+			   ,DATA
+			   ,ORA
+			   ,CASSA
+			   ,SCONTRINO
+			   ,@ID_PROVENIENZA
+			   ,ID_BASKET
+			   ,STAMPATO
+			   ,PAGATO
+			   ,TOTALE
+			   ,RINCARO
+			   FROM BASKET_TESTATA WHERE ID_BASKET = @ID_BASKET 
+
+	DELETE FROM SCONTRINATO_RIGA WHERE CODICE_NEGOZIO = @CODICE_NEGOZIO AND DATA = @DATA AND ORA = @ORA AND CASSA = @CASSA AND (SCONTRINO = @SCONTRINO or SCONTRINO = 0)-- aggiunta la cancellazione dello scontrino con valore zero a seguito di una stampa successiva al momento di vendita
+	INSERT INTO [SCONTRINATO_RIGA]
+			   ([CODICE_NEGOZIO]
+			   ,[DATA]
+			   ,[ORA]
+			   ,[CASSA]
+			   ,[SCONTRINO]
+			   ,[RIGA]
+			   ,[EAN]
+			   ,[PREZZO]
+			   ,[VALORE_SCONTO]
+			   ,[PERC_SCONTO]
+			   ,[SCONTO_ESPOSTO]
+			   ,[QTA]
+			   ,[REPARTO_VENDITA]
+			   ,[LOTTO_VENDITA])
+		 SELECT
+			   @CODICE_NEGOZIO 
+			   ,@DATA
+			   ,@ORA
+			   ,@CASSA
+			   ,@SCONTRINO
+			   ,RIGA
+			   ,EAN
+			   ,PREZZO
+			   ,VALORE_SCONTO
+			   ,PERC_SCONTO
+			   ,SCONTO_ESPOSTO
+			   ,QTA
+			   ,REPARTO_VENDITA 
+			   ,LOTTO_VENDITA 
+		FROM BASKET_RIGA  WHERE ID_BASKET = @ID_BASKET 
+			   
+	           
+	DELETE FROM SCONTRINATO_PAGAMENTO WHERE CODICE_NEGOZIO = @CODICE_NEGOZIO AND DATA = @DATA AND ORA = @ORA AND CASSA = @CASSA AND (SCONTRINO = @SCONTRINO or SCONTRINO = 0)-- aggiunta la cancellazione dello scontrino con valore zero a seguito di una stampa successiva al momento di vendita
+	INSERT INTO [SCONTRINATO_PAGAMENTO]
+			   ([CODICE_NEGOZIO]
+			   ,[DATA]
+			   ,[ORA]
+			   ,[CASSA]
+			   ,[SCONTRINO]
+			   ,[TIPO_PAGAMENTO]
+			   ,[IMPORTO])
+		 SELECT
+			   @CODICE_NEGOZIO 
+			   ,@DATA
+			   ,@ORA
+			   ,@CASSA
+			   ,@SCONTRINO
+			   ,TIPO_PAGAMENTO
+			   ,IMPORTO
+			FROM BASKET_PAGAMENTO WHERE ID_BASKET = @ID_BASKET  
+
+	-- Lo scontrino con progressivo 0 è generato in caso di problemi
+	-- con il pagamento automatico contanti (ETH) e in caso di assenza comunicazione
+	-- con la stampante fiscale. Lo scontrino potrà essere comunque stampato in un secondo momento.	
+ 	IF @SCONTRINO > 0
+	BEGIN
+		DELETE	   FROM BASKET_TESTATA   WHERE ID_BASKET = @ID_BASKET 
+		DELETE	   FROM BASKET_RIGA      WHERE ID_BASKET = @ID_BASKET 
+		DELETE	   FROM BASKET_PAGAMENTO WHERE ID_BASKET = @ID_BASKET  	
+	END	
+
+	INSERT	INTO SCONTRINATO_DA_INVIARE(
+		[CODICE_NEGOZIO],
+		[DATA],
+		[ORA],
+		[CASSA] ,
+		[SCONTRINO])
+	VALUES
+	(
+		@CODICE_NEGOZIO 
+	   ,@DATA
+	   ,@ORA
+	   ,@CASSA
+	   ,@SCONTRINO
+	)
+			 		
+	SET @RISULTATO = 'OK'
+	SET @DESRISULTATO = 'BASKET INSERITO CORRETTAMENTE'
+
+
+END TRY
+BEGIN CATCH
+    --IF @@TRANCOUNT > 0
+    --    ROLLBACK TRAN --ROLLBACK IN CASE OF ERROR
+
+    -- YOU CAN RAISE ERROR WITH RAISEERROR() STATEMENT INCLUDING THE DETAILS OF THE EXCEPTION
+    --RAISERROR(ERROR_MESSAGE(), ERROR_SEVERITY(), 1)
+    PRINT 'VADO IN ERRORE'
+    SET @RISULTATO = 'KO ' + ERROR_MESSAGE()
+    SET @DESRISULTATO = ERROR_MESSAGE()
+END CATCH	
+
+	FINE:
+	--PRINT @RISULTATO
+	--PRINT @DESRISULTATO
+	
+	IF SUBSTRING(@RISULTATO, 1 , 2) = 'OK' 
+		COMMIT TRANSACTION
+	ELSE
+		ROLLBACK TRANSACTION
+		
+
+
+
+
+END

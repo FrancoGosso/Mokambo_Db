@@ -1,0 +1,15 @@
+﻿
+
+CREATE PROCEDURE [dbo].[PRC_GET_COMANDE_DA_EVADERE]
+@CODICE_UTENTE VARCHAR(30) = ''
+AS
+	SET NOCOUNT ON
+	
+	select t.ID_COMANDA, CONVERT(VARCHAR(5),max(DATA_CREAZIONE),108) as ora,
+			max(tavolo) as tavolo, datediff(minute, max(DATA_CREAZIONE), getdate()) as tempo_attesa, 
+			sum (isnull(qta,0)) as qta, sum (isnull(QTA_EVASA, 0)) as QTA_EVASA,
+			CODICE_UTENTE
+	 from COMANDA_TESTATA t
+	 left join COMANDA_RIGA r on t.ID_COMANDA = r.ID_COMANDA
+	 WHERE EVASA = 0 AND CODICE_UTENTE = CASE WHEN @CODICE_UTENTE = '' THEN CODICE_UTENTE ELSE @CODICE_UTENTE END
+	 group by t.ID_COMANDA, CODICE_UTENTE
