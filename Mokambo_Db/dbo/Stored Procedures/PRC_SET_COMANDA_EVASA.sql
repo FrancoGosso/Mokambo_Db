@@ -14,13 +14,13 @@ BEGIN TRY
 	@qta				  INT=0,
 	@qta_Evasa			  INT=0
 
-	select @qta = qta, @qta_Evasa=qta_evasa from [dbo].[COMANDA_RIGA] 
+	select @qta = sum(qta), @qta_Evasa= sum(qta_evasa) from [dbo].[COMANDA_RIGA] 
 		where ID_COMANDA = @ID_COMANDA
 
 	if (@qta_evasa = 0) OR (@qta_evasa <> @qta) 
-		update [dbo].[COMANDA_TESTATA] set [EVASA] = 0
+		update [dbo].[COMANDA_TESTATA] set [EVASA] = 0 WHERE ID_COMANDA = @ID_COMANDA
 	else
-		update [dbo].[COMANDA_TESTATA] set [EVASA] = 1, DATA_FINE_EVASIONE = GETDATE()
+		update [dbo].[COMANDA_TESTATA] set [EVASA] = 1, DATA_FINE_EVASIONE = GETDATE() WHERE ID_COMANDA = @ID_COMANDA
 
 	SET @RISULTATO = 'OK'
 	SET @DESRISULTATO = 'INSERIMENTO EFFETTUATO CORRETTAMENTE'
